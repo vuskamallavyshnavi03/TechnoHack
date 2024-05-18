@@ -1,0 +1,28 @@
+def currency_converter(amount, from_currency, to_currency): 
+    exchange_rates = {
+        'USD': {'EUR': 0.82, 'GBP': 0.72, 'JPY': 109.36},
+        'EUR': {'USD': 1.22, 'GBP': 0.88, 'JPY': 130.72},
+        'GBP': {'USD': 1.39, 'EUR': 1.14, 'JPY': 149.46},
+        'JPY': {'USD': 0.0091, 'EUR': 0.0077, 'GBP': 0.0067}
+    }
+
+    if from_currency not in exchange_rates or to_currency not in exchange_rates[from_currency]:
+        print("Invalid currency pair.")
+        return None
+
+    conversion_rate = exchange_rates[from_currency][to_currency]
+    converted_amount = amount * conversion_rate
+    return converted_amount 
+
+def main():
+    print("Welcome to Currency Converter!")
+    amount = float(input("Enter the amount: "))
+    from_currency = input("Enter the currency you want to convert fro m (e.g., USD): ").upper()
+    to_currency = input("Enter the currency you want to convert to (e.g., EUR): ").upper()
+    
+    converted_amount = currency_converter(amount, from_currency, to_currency)
+    if converted_amount is not None:
+        print(f"{amount} {from_currency} is equal to {converted_amount:.2f} {to_currency}")
+
+if__name__ == "__main__":
+    main()
